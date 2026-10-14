@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: If you use this software, please cite it using the metadata from this file.
+repository-code: https://github.com/muteNut/ShinyRhizome/tree/v1.0
+authors:
+- affiliation: '@anthropics'
+  family-names: Claude
+- given-names: David
+  family-names: Sutterlütti
+  orcid: "https://orcid.org/0009-0005-9893-1843"
+license: GPL-3.0-or-later
+title: ShinyRhizome
+version: 1.0
+type: software
+date-released: 2026-10-14
+url: "https://github.com/muteNut/ShinyRhizome"
