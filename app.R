@@ -3,7 +3,7 @@
 # Put app.R next to the portable rv build (rv-dist/rv.exe) and start with
 #   shiny::runApp()
 # Packages: shiny, bslib, readr, dplyr
-# Optional: tiff + png, to show TIFF scans in the Original preview view
+# tiff + png, to show TIFF scans in the Original preview view
 #
 # Workflow: tune the settings on one sample image (Preview tab), run them on
 # all images (Batch tab), optionally add dry mass for SRL/SRA/RTD (Dry mass tab).
@@ -14,7 +14,7 @@
 if (!requireNamespace("pacman", quietly = TRUE))
   install.packages("pacman", repos = "https://cloud.r-project.org")
 pacman::p_load(
-  shiny, bslib, readr, dplyr, tiff)
+  shiny, bslib, readr, dplyr, tiff, png)
 
 `%||%` <- function(a, b) if (is.null(a)) b else a
 
@@ -76,8 +76,9 @@ lab <- function(id) {
 }
 
 # ---- helpers ----------------------------------------------------------------
+win_to_slash <- function(p) gsub("\\\\", "/", gsub('^\\s*"|"\\s*$', "", trimws(p)))
 clean_path <- function(p) {
-  p <- normalizePath(trimws(p), winslash = "/", mustWork = FALSE)
+  p <- normalizePath(win_to_slash(p), winslash = "/", mustWork = FALSE)
   if (!grepl("^([A-Za-z]:)?/$", p)) p <- sub("/+$", "", p)   # no trailing slash (breaks quoting on Windows)
   p
 }
@@ -463,7 +464,7 @@ Shiny.addCustomMessageHandler('preview-frame', function(m) {
 
 # ---- UI ------------------------------------------------------------------------
 ui <- page_sidebar(
-  title = "RhizoVision rv",
+  title = "ShinyRhizome",
   theme = bs_theme(version = 5, primary = "#2f6f4e"),
   sidebar = sidebar(
     width = 360,
@@ -645,6 +646,14 @@ ui <- page_sidebar(
 
 # ---- server -----------------------------------------------------------------------
 server <- function(input, output, session) {
+  session$onSessionEnded(stopApp)              # closing the browser tab stops the app
+  # pasted Windows paths: drop quotes, switch \ to / in the fields themselves
+  lapply(c("rv_path", "img_path", "out_dir"), function(id) {
+    observeEvent(input[[id]], {
+      v <- win_to_slash(input[[id]])
+      if (!identical(v, input[[id]])) updateTextInput(session, id, value = v)
+    }, ignoreInit = TRUE)
+  })
   rv_bin <- reactive(clean_path(input$rv_path))
   
   # rv found?
