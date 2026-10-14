@@ -1,0 +1,5 @@
+Example wheat root scans (broken roots, 600 dpi) from RhizoVision Explorer:
+https://github.com/predictivephenomics/RhizoVisionExplorer/tree/a299a1a70456158df51f351fc2b9a35db2ca9469/imageexamples/scans
+Copyright (C) 2025 Oak Ridge National Laboratory; (C) 2021 Anand Seethepalli and Larry York;
+(C) 2020 Courtesy of Noble Research Institute, LLC. GPL-3.0, like the rest of that repository.
+The app's default settings are the same as the settings published with these scans.

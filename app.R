@@ -20,8 +20,8 @@ pacman::p_load(
 
 # ---- defaults ---------------------------------------------------------------
 DEFAULT_RV  <- "rv-dist/rv.exe"
-DEFAULT_IMG <- "scans"
-DEFAULT_OUT <- "out"
+DEFAULT_IMG <- "samples"
+DEFAULT_OUT <- "output"
 
 IMG_RE <- "\\.(png|jpe?g|bmp|tiff?)$"       # formats rv reads
 QC_RE  <- "_(seg|features)\\.png$"          # rv's own QC output, never analysed
