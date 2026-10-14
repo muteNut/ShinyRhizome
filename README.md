@@ -13,6 +13,7 @@ A Shiny front end for `rv`, the command-line tool of [RhizoVision Explorer](http
 3. Under **Files**, set the folder with your scans and the output folder.
 
 The zip contains a portable `rv-dist/rv.exe` with all the DLLs it needs, so you don't need MSYS2 or any PATH changes. It needs a 64-bit CPU with AVX2.
+The app opens with three example wheat root scans from RhizoVision Explorer (`samples/`, see `samples/SOURCE.txt`), so you can try it before using your own images.
 
 ## Notes
 
