@@ -1,0 +1,5 @@
+ShinyRhizome/
+*.zip
+test/
+.Rproj.user/
+.Rhistory
